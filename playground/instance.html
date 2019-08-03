@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+    
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+    <script>
+        /** 
+            인스턴스의 속성, API들
+            인스턴스에서 사용할 수 있는 속성과 API는 다음과 같습니다.
+            new Vue({
+                el:,
+                template:,
+                data:,
+                methods:,
+                created:,
+                watch:
+            })
+        */
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue.js',
+                test: 123,
+            }
+        });
+
+        console.log(vm) //인스턴스의 변수를 콘솔로 찍어보면 여러 저장된 api들을 볼수 있다.
+    </script>
+</body>
+</html>
