@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <app-header v-bind:프롭스 속성 이름="상위 컴포넌트의 데이터 이름"></app-header> 문법-->
+        <app-header v-bind:propsdata="message"></app-header>
+        <app-content v-bind:propsdata="num"></app-content>
+    </div>
+
+     <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+     <script>
+        //components 에 들어갈 template, props를 변수에 담아서 이래 있는 전역 컴포넌트에 넣는것이다.
+        const appHeader = { 
+            template : '<h1>{{propsdata}}</h1>',
+            props : ['propsdata']
+        }
+
+        const appContent = {
+            template: '<div>{{propsdata}}</div>',
+            props: ['propsdata']
+        }
+
+        new Vue({
+            el:'#app',
+            components: {
+                'app-header' : appHeader,
+                'app-content' : appContent
+            },
+            data: {
+                message: 'hi',
+                num: 10
+            }
+        })
+     </script>
+
+</body>
+</html>
