@@ -20,7 +20,7 @@
     
     <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
     <script>
-        //전역 컴포넌트
+        //전역 컴포넌트 등록 방식
         // Vue.component('컴포넌트이름',컴포넌트 내용); 문법
         Vue.component('app-header',{
             template: '<h1>Header</h1>'
@@ -42,6 +42,7 @@
 
         new Vue({
             el: '#app2',
+             //지역 컴포넌트 등록 방식
             components: {
                 //'컴포넌트 이름': '컴포넌트 내용', 문법
                 'app-footer': {
