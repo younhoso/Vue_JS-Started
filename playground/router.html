@@ -9,12 +9,12 @@
 <body>
     
     <div id="app">
-    <div>
-        <!-- <a href="#0"></a> 이것과 같은 역활 하는 router-link-->
-        <router-link to="/login">Login</router-link>
-        <router-link to="/Main">Main</router-link>
-    </div>
-        <router-view></router-view>
+        <div>
+            <!-- <a href="#0"></a> 이것과 같은 역활 하는 router-link-->
+            <router-link to="/login">Login</router-link>
+            <router-link to="/Main">Main</router-link>
+        </div>
+        <router-view></router-view> <!-- 해당 컴포넌트가 화면에 뿌려집니다. -->
     </div>
 
     <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
@@ -29,6 +29,7 @@
         }
 
         var Router = new VueRouter({
+            mode: 'history',    //주소창에 router.html# 이라고 되어 있는 부분을 없에고 깔끔한 url로 만드어주는 역활
             //페이지의 라우딩 정보
             routes: [
                 //로그인 페이지 정보
@@ -48,7 +49,7 @@
 
         new Vue({
             el: '#app',
-            router: Router
+            router: Router,
         });
     </script>
 </body>

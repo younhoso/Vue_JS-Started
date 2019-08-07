@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+         <p>
+            <router-link to="/user">/user</router-link>
+            <router-link to="/user/profile">/user/profile</router-link>
+            <router-link to="/user/posts">/user/posts</router-link>
+        </p>
+        <router-view></router-view> <!-- 해당 컴포넌트가 화면에 뿌려질 영역. -->
+    </div>
+
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var User = {
+            template: `<div>
+                        <h2>User Component</h2>
+                        <router-view></router-view>
+                    </div>`
+        };
+
+        var UserPost = {
+            template: '<div>User Post</div>'
+        };
+
+         var UserProfile = {
+            template: '<div>User Profile</div>'
+        };
+
+        var Router = new VueRouter({
+            mode: 'history',
+            routes : [
+                {
+                    path: '/user',
+                    component: User,
+                    children: [
+                        {
+                            path: 'posts',
+                            component: UserPost
+                        },
+                        {
+                            path: 'profile',
+                            component: UserProfile
+                        }
+                    ]
+                },
+            ]
+        });
+
+       new Vue({
+           el: '#app',
+           router : Router
+       })
+    </script>
+</body>
+</html>
