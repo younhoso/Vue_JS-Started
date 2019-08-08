@@ -59,7 +59,8 @@
         return fileC();         //위에서 정의한 3번째 Promise를 의미한다.
     }).then(function(data){
         c = data;
-        console.log(a + b + c); //response 값 출력
+        console.log(a + b + c);     //response 값 출력
+        $('#app').append(a + b + c) //response 값 화면에 출력
     }).catch(function(error){
         console.log('then error : ', error);   // Error 출력
     });
