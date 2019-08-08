@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>    
+<script>
+    var a, b, c; //전역 변수로 값을 저장해놓는다.
+
+    // Promise 정의1
+    function fileA(){
+        var pr = new Promise(function(resolve, reject){
+            $.ajax('a.json').done(function(response){
+                resolve(response);
+            }).fail(function(){
+                reject('파일 읽어오기 에러 메시지');
+            });
+        });
+        return pr;
+    }
+    // Promise 정의2
+    function fileB(){
+        var pr = new Promise(function(resolve, reject){
+            $.ajax('b.json').done(function(response){
+                resolve(response);
+            }).fail(function(){
+                reject('파일 읽어오기 에러 메시지');
+            });
+        });
+        return pr;
+    }
+
+    // Promise 정의3
+    function fileC() {
+        var pr = new Promise(function(resolve, reject){
+             $.ajax('c.json').done(function(response){
+                resolve(response);
+            }).fail(function(){
+                reject('파일 읽어오기 에러 메시지');
+            });
+        });
+        return pr;
+    }
+
+    //위에서 정의한 내용이 Promise 수행이 되고 나서(then) 실행을 한다.
+    fileA().then(function(data){
+        a = data;
+        console.log(a);     //response 값 출력
+        return fileB();     //위에서 정의한 2번째 Promise를 의미한다.
+    }).then(function(data){
+        b = data;
+        console.log(a + b);     //response 값 출력
+        return fileC();         //위에서 정의한 3번째 Promise를 의미한다.
+    }).then(function(data){
+        c = data;
+        console.log(a + b + c); //response 값 출력
+    }).catch(function(error){
+        console.log('then error : ', error);   // Error 출력
+    });
+
+</script>
+</body>
+</html>
