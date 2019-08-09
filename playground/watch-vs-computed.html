@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{num}}
+    </div>
+
+    <script src="https://unpkg.com/vue@2.5.22/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                num: 10
+            },
+            computed: {     //간단한 텍스트, 연산할때 사용이 적합하다. (원만하면 computed를 사용하는게 좋고, watch보단 computed가 데부분에 케이스에 적합하다. )
+                doubleNum: function(){
+                    return this.num * 2;
+                }
+            },
+            watch: {        //무거운 동작 즉 데이터 요청에 적합하다.
+                num: function(newValue, oldValue){  //oldValue 이전값, newValue 새로 바뀐값
+                    this.fetchUserByNumber(newValue);
+                } 
+            },
+            methods: {
+                fetchUserByNumber: function(num){
+                    //console.log(num);
+                    axios.get(num);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
